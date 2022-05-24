@@ -1,0 +1,62 @@
+<body>    
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <style>
+        .box {
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        .box--large {
+            width: 270px;
+            height: 270px;
+        }
+        .box--medium {
+            width: 180px;
+            height: 180px;
+        }
+        .box--small {
+            width: 90px;
+            height: 90px;
+        }
+    </style>
+    <script type="text/babel">
+        const root = document.getElementById('root');
+
+        function Box({style, size, className = '', ...rest}) {
+            const boxSize = size ? `box--${size}` : '';
+            return (
+                <div className={`box ${boxSize} ${className}`} style={{ fontStyle: 'italic', ...style }}>
+                    {rest.children}
+                </div>
+                // <div {...rest}/>
+            );
+            // const props = {
+            //     className: {className},
+            //     style: {style},
+            //     rest: {rest}
+            // }
+            // return (
+            //     {...props}
+            //     // <div className={className}>
+            //     //     {rest}
+            //     // </div>
+            // );
+        }
+
+        //const element = Box('hello', { backgroundColor: 'blue' }, 'Hellooo world');
+        //const s = { backgroundColor: 'blue' };
+        //const style = { fontStyle: 'italic' };
+        const smallbox = <Box className='hello' size='small' style={{backgroundColor: 'lightblue'}}>small lightblue box</Box>;
+        const medbox = <Box className='hello' size='medium' style={{backgroundColor: 'pink'}}>medium pink box</Box>; 
+        const largebox = <Box className='hello' size='large' style={{backgroundColor: 'orange'}}>large orange box</Box>;
+        const blankbox = <Box className='hello'>sizeless box</Box>;
+        const element = <>{smallbox}{medbox}{largebox}{blankbox}</>
+        const box = <div>Hello world</div>;
+        ReactDOM.render(element, root);
+    </script>
+</body>

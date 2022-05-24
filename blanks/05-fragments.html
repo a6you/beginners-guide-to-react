@@ -1,0 +1,22 @@
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        const root = document.querySelector('#root');
+        // const text = 'Helloo world';
+        // const className = 'hihi';
+        // const childs = {text, className};
+        // const children = 'Hello';
+        // // const ReactRoot = React.createElement('div',
+        // //     {...childs}, [children]
+        // // );
+        // const element = <div className={className}>{children}{text} <strong> woreklsdjf</strong></div>
+        // ReactDOM.render(element, root);
+        const element1 = <strong>Hello</strong>;
+        const element2 = <strong>World</strong>;
+        const element = <>{element1} {element2}</>
+        ReactDOM.render(element, root);
+    </script>
+</body>

@@ -1,0 +1,15 @@
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        const root = document.getElementById('root');
+        const Message = (props) => <div className="message">{props.children}</div>;
+        //const helloElement = message({ msg: 'Hello' });
+        const helloElement = <Message>Helloo<span>And he makes the play</span></Message>
+        const worldElement = <span>World</span>;
+        const helloWorld = <>{helloElement}{worldElement}</>;
+        ReactDOM.render(helloWorld, root);
+    </script>
+</body>

@@ -1,0 +1,34 @@
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root');
+
+        function App() {
+            const [clicks, setClicks] = React.useState(0);
+            const [text, setText] = React.useState('');
+            // Can't use onClick={setClicks(clicks + 1)}
+            // This is passing a reference to setClicks, this gets called even
+            // without a click event happening in the button
+            // The function gets called an infinite number of times in this case
+            // https://stackoverflow.com/questions/50350202/when-to-use-inline-function-on-button-onclick-event-javascript-react-js
+            return (
+                <div>
+                    <p>There have been {clicks} clicks so far.</p> 
+                    <p><button onClick={() => setClicks(clicks + 1)}>Click Me</button></p>
+                    <p>You typed: {text ? <strong>{text}</strong> : 'Nothing yet!'}</p>
+                    <p><input onChange={() => setText(event.target.value)}/></p>
+                </div>
+            );
+        }
+
+        function renderApp() {
+            ReactDOM.render(<App />, rootElement);
+        }
+
+        renderApp();
+
+    </script>
+</body>

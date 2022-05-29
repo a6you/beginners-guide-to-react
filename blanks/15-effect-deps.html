@@ -1,0 +1,54 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    function Greeting() {
+      const [name, setName] = React.useState(
+        () => window.localStorage.getItem('name') || ''
+      )
+
+      React.useEffect(
+        () => {
+          console.log('update name')
+          window.localStorage.setItem('name', name)
+        }, [name] 
+      )
+
+      const handleChange = event => setName(event.target.value)
+
+      return (
+        <div>
+          <form>
+            <label htmlFor="name">Name: </label>
+            <input id="name" value={name} onChange={handleChange}/>
+          </form>
+          {name ? <strong>Hello {name}</strong> : 'Please type your name'}
+        </div>
+      )
+    }
+
+    function App() {
+      const [count, setCount] = React.useState(
+        () => parseInt(window.localStorage.getItem('count')) || 0
+      )
+
+      React.useEffect(
+        () => {
+          console.log('update count')
+          window.localStorage.setItem('count', count)
+        }
+      )
+
+      return (
+        <>
+          <button onClick={e => setCount(count + 1)}>{count}</button>
+          <Greeting />
+        </>
+      )
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>

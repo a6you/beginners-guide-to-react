@@ -5,16 +5,15 @@
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
     function Greeting() {
-      const [name, setName] = React.useState(
-        () => window.localStorage.getItem('name') || ''
-      )
+      const [name, setName] = React.useState(() => {
+        console.log('greet use state')
+        return window.localStorage.getItem('name') || ''
+      })
 
-      React.useEffect(
-        () => {
-          console.log('update name')
-          window.localStorage.setItem('name', name)
-        }, [name] 
-      )
+      React.useEffect(() => {
+        console.log('greet use effect')
+        window.localStorage.setItem('name', name)
+      }, [name])
 
       const handleChange = event => setName(event.target.value)
 
@@ -30,16 +29,10 @@
     }
 
     function App() {
-      const [count, setCount] = React.useState(
-        () => parseInt(window.localStorage.getItem('count')) || 0
-      )
-
-      React.useEffect(
-        () => {
-          console.log('update count')
-          window.localStorage.setItem('count', count)
-        }
-      )
+      const [count, setCount] = React.useState(() => {
+        console.log('app use state')
+        return 0
+      })
 
       return (
         <>
@@ -49,6 +42,6 @@
       )
     }
 
-    ReactDOM.render(<App />, document.getElementById('root'));
+    ReactDOM.render(<App />, document.getElementById('root'))
   </script>
 </body>

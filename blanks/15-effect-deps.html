@@ -10,10 +10,8 @@
       )
 
       React.useEffect(
-        () => {
-          console.log('update name')
-          window.localStorage.setItem('name', name)
-        }, [name] 
+        () => { window.localStorage.setItem('name', name)
+       }, [name]
       )
 
       const handleChange = event => setName(event.target.value)
@@ -22,7 +20,7 @@
         <div>
           <form>
             <label htmlFor="name">Name: </label>
-            <input id="name" value={name} onChange={handleChange}/>
+            <input id="name" value={name} onChange={handleChange} />
           </form>
           {name ? <strong>Hello {name}</strong> : 'Please type your name'}
         </div>
@@ -30,25 +28,16 @@
     }
 
     function App() {
-      const [count, setCount] = React.useState(
-        () => parseInt(window.localStorage.getItem('count')) || 0
-      )
-
-      React.useEffect(
-        () => {
-          console.log('update count')
-          window.localStorage.setItem('count', count)
-        }
-      )
+      const [count, setCount] = React.useState(0)
 
       return (
-        <>
-          <button onClick={e => setCount(count + 1)}>{count}</button>
+        <div>
+          <button onClick={() => setCount(count + 1)}>{count}</button>
           <Greeting />
-        </>
+        </div>
       )
     }
 
-    ReactDOM.render(<App />, document.getElementById('root'));
+    ReactDOM.render(<App />, document.getElementById('root'))
   </script>
 </body>

@@ -6,14 +6,13 @@
   <script type="text/babel">
     function Greeting() {
       const [name, setName] = React.useState(() => {
-        console.log('greet use state')
         return window.localStorage.getItem('name') || ''
       })
 
-      React.useEffect(
-        () => { window.localStorage.setItem('name', name)
-       }, [name]
-      )
+      React.useEffect(() => {
+        console.log('hello')
+        return window.localStorage.setItem('name', name)
+      }, [name])
 
       const handleChange = event => setName(event.target.value)
 
@@ -32,10 +31,10 @@
       const [count, setCount] = React.useState(0)
 
       return (
-        <div>
+        <>
           <button onClick={() => setCount(count + 1)}>{count}</button>
           <Greeting />
-        </div>
+        </>
       )
     }
 
